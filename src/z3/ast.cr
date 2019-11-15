@@ -15,7 +15,19 @@ class Z3::Ast
     io << String.new(LibZ3.ast_to_string(@context, self))
   end
 
+  def or(b : self) : self
+    @context.mk_or(self, b)
+  end
+
   def ^(b : self) : self
     @context.mk_xor(self, b)
+  end
+
+  def ==(b : self) : self
+    @context.mk_eq(self, b)
+  end
+
+  def !=(b : self) : self
+    @context.mk_distinct(self, b)
   end
 end

@@ -35,6 +35,9 @@ lib LibZ3
   fun dec_ref = Z3_dec_ref(c : Context, a : Ast) : Void
 
   fun mk_xor = Z3_mk_xor(c : Context, t1 : Ast, t2 : Ast) : Ast
+  fun mk_or = Z3_mk_or(c : Context, num_args : UInt32, args : Ast*) : Ast
+  fun mk_eq = Z3_mk_eq(c : Context, l : Ast, r : Ast) : Ast
+  fun mk_distinct = Z3_mk_distinct(c : Context, num_args : UInt32, args : Ast*) : Ast
 
   fun ast_to_string = Z3_ast_to_string(c : Context, a : Ast) : String
 

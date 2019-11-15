@@ -52,4 +52,19 @@ class Z3::Context
     # TODO assert a, b should belong to this context
     Ast.new(self, LibZ3.mk_xor(self, a, b))
   end
+
+  def mk_or(a : Ast, b : Ast)
+    # TODO assert a, b should belong to this context
+    Ast.new(self, LibZ3.mk_or(self, 2, [a.to_unsafe, b.to_unsafe] of LibZ3::Ast))
+  end
+
+  def mk_eq(a : Ast, b : Ast)
+    # TODO assert a, b should belong to this context
+    Ast.new(self, LibZ3.mk_eq(self, a, b))
+  end
+
+  def mk_distinct(a : Ast, b : Ast)
+    # TODO assert a, b should belong to this context
+    Ast.new(self, LibZ3.mk_distinct(self, 2, [a.to_unsafe, b.to_unsafe] of LibZ3::Ast))
+  end
 end
