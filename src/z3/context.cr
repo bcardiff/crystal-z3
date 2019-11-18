@@ -37,34 +37,13 @@ class Z3::Context
     @raw
   end
 
-  getter(bool_sort) { Sort.new(self, LibZ3.mk_bool_sort(self)) }
-
-  def mk_bool_var(name : String)
-    mk_var(name, self.bool_sort)
-  end
-
-  private def mk_var(name : String, ty : Sort)
-    s = LibZ3.mk_string_symbol(self, name)
-    Ast.new(self, LibZ3.mk_const(self, s, ty))
-  end
-
-  def mk_xor(a : Ast, b : Ast)
+  protected def assert_context(a : Ast, b : Ast)
     # TODO assert a, b should belong to this context
-    Ast.new(self, LibZ3.mk_xor(self, a, b))
   end
 
-  def mk_or(a : Ast, b : Ast)
-    # TODO assert a, b should belong to this context
-    Ast.new(self, LibZ3.mk_or(self, 2, [a.to_unsafe, b.to_unsafe] of LibZ3::Ast))
-  end
-
-  def mk_eq(a : Ast, b : Ast)
-    # TODO assert a, b should belong to this context
-    Ast.new(self, LibZ3.mk_eq(self, a, b))
-  end
-
-  def mk_distinct(a : Ast, b : Ast)
-    # TODO assert a, b should belong to this context
-    Ast.new(self, LibZ3.mk_distinct(self, 2, [a.to_unsafe, b.to_unsafe] of LibZ3::Ast))
+  protected def unsafe_ast_args(a : Ast, b : Ast)
+    [a.to_unsafe, b.to_unsafe] of LibZ3::Ast
   end
 end
+
+require "./context/*"

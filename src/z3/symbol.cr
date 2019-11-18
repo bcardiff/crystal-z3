@@ -1,5 +1,5 @@
 class Z3::Symbol
-  private def initialize(@raw : LibZ3::Symbol)
+  private def initialize(@context : Context, @raw : LibZ3::Symbol)
   end
 
   def to_unsafe
@@ -7,7 +7,11 @@ class Z3::Symbol
   end
 
   def self.from_int(c : Context, i : Int32)
-    LibZ3.mk_int_symbol(c, i)
+    new(c, LibZ3.mk_int_symbol(c, i))
+  end
+
+  def self.from_string(c : Context, name : String)
+    new(c, LibZ3.mk_string_symbol(c, name))
   end
 end
 
