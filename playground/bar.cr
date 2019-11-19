@@ -7,11 +7,9 @@ ctx = s.context
 x = ctx.mk_int_var("x")
 y = ctx.mk_int_var("y")
 
-l = ->(v : Int32) { ctx.mk(v, ctx.int_sort) }
-
-s.assert(x > l.call(2))                # x > 2
-s.assert(y < l.call(10))               # y < 10
-s.assert(x + l.call(2)*y == l.call(7)) # x + 2 * y == 7
+s.assert(x > 2)        # x > 2
+s.assert(y < 10)       # y < 10
+s.assert(x + 2*y == 7) # x + 2 * y == 7
 
 puts "1st model"
 r = s.check

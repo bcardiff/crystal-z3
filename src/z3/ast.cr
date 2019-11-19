@@ -1,4 +1,6 @@
 class Z3::Ast
+  getter context : Context
+
   def initialize(@context : Context, @raw : LibZ3::Ast)
     LibZ3.inc_ref(@context, @raw)
   end
